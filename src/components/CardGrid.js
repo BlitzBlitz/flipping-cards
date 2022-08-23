@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Card from "./Card";
 
 const CardGrid = () => {
   const [newGame, setNewGame] = useState(false);
@@ -10,9 +11,17 @@ const CardGrid = () => {
     "koyota",
     "leon",
     "ox",
-    "polecat",
     "tiger",
     "zebra",
+    "cat1",
+    "duck1",
+    "fox1",
+    "kangaroo1",
+    "koyota1",
+    "leon1",
+    "ox1",
+    "tiger1",
+    "zebra1",
   ]);
 
   useEffect(() => {
@@ -20,17 +29,19 @@ const CardGrid = () => {
     if (newGame) {
       setNewGame(false);
     }
-  }, [newGame]);
+  }, [newGame, cards]);
 
   const shuffle = (cards) => {
     return cards.sort((a, b) => 0.5 - Math.random());
   };
   return (
-    <div className="cardGrid">
+    <div className="cardContainer">
       <button onClick={(e) => setNewGame(true)}>New Game</button>
-      {cards.map((card) => {
-        return <h1 key={card}>{card}</h1>;
-      })}
+      <div className="cardGrid">
+        {cards.map((card) => {
+          return <Card key={card} data={card} />;
+        })}
+      </div>
     </div>
   );
 };
